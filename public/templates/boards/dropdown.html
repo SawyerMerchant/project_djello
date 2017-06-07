@@ -1,0 +1,21 @@
+<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Boards <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+  <li>
+    <a ui-sref="boards.new">+ Create Board</a>
+  </li>
+  <li role="separator" class="divider"></li>
+
+  <li>
+    <a ui-sref="boards.index">Boards Index</a>
+  </li>
+  <li role="separator" class="divider"></li>
+
+  <li ng-if="!boards.length">
+    <a class="text-danger">No boards yet</a>
+  </li>
+
+  <li ng-repeat="board in boards" ng-if="boards.length">
+    <a ui-sref="boards.show({ id: board.id })">{{ board.title }}</a>
+  </li>
+</ul>

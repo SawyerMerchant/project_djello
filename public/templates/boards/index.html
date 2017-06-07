@@ -1,0 +1,7 @@
+
+<h1>Boards</h1>
+
+<h2 ng-repeat="board in boards">
+  <a ui-sref="boards.show({ id: board.id })">{{ board.title }}</a>
+  <a class="btn btn-danger" ng-click="destroy(board.id)">Delete</a>
+</h2>

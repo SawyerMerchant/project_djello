@@ -1,5 +1,6 @@
 class Board < ApplicationRecord
   belongs_to :user
+  has_many :lists, dependent: :destroy
 
   validates :title,
             presence: true,
@@ -7,4 +8,6 @@ class Board < ApplicationRecord
 
   validates :user,
             presence: true
+
+
 end

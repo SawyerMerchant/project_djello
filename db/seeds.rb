@@ -7,13 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 USER_COUNT = 10
-BOARD_COUNT = 3
+ITEM_COUNT = 3
+
 
 if Rails.env == "development"
-  puts "Deleting Boards"
-  Board.destroy_all
-  puts "Deleting Users"
-  User.destroy_all
+  # puts "Deleting Lists"
+  # List.destroy_all
+  # puts "Deleting Boards"
+  # Board.destroy_all
+  # puts "Deleting Users"
+  # User.destroy_all
+  puts "Reset Database"
+  Rake::Task['db:migrate:reset'].invoke
 end
 
 puts "Creating Users"
@@ -28,9 +33,20 @@ p User.all
 puts "Creating Boards"
 users = User.all
 users.each do |user|
-  BOARD_COUNT.times do
+  ITEM_COUNT.times do
     user.boards.create(
       title: Faker::Hacker.unique.say_something_smart
+    )
+  end
+end
+
+puts "Creating Lists"
+boards = Board.all
+boards.each do |board|
+  ITEM_COUNT.times do
+    board.lists.create(
+      title: Faker::Hacker.unique.say_something_smart,
+      description: Faker::Hipster.paragraph
     )
   end
 end

@@ -17,4 +17,6 @@
 //= require lodash
 //= require restangular
 //= require angular-devise
+//= require angular-drag-and-drop-lists
+//= require bootstrap-sprockets
 //= require_tree .

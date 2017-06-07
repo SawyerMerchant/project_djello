@@ -1,6 +1,8 @@
 var Djello = angular.module('Djello', [
   'ui.router',
   'restangular',
+  'Devise',
+  'dndLists'
 ]);
 
 Djello.constant('_', window._);
@@ -19,3 +21,10 @@ Djello.config(
       .headers
       .common['X-CSRF-Token'] = token;
   }]);
+
+Djello.config(['RestangularProvider', function(RestangularProvider) {
+
+  RestangularProvider.setBaseUrl('/api/v1');
+  RestangularProvider.setRequestSuffix('.json');
+
+}]);
