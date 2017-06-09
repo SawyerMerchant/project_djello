@@ -70325,8 +70325,8 @@ Djello.config(['$urlRouterProvider', '$stateProvider',
           }
         },
         resolve: {
-          boards: ['BoardService', function(BoardService) {
-            return BoardService.all();
+          boards: ['boardService', function(boardService) {
+            return boardService.all();
           }]
         }
       })
@@ -70702,7 +70702,7 @@ Djello.controller("NestedListsDemoController", function($scope) {
 
 
 }).call(this);
-Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
+Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
 
     var _boards = [];
 
@@ -70718,9 +70718,9 @@ Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
       return collection;
     });
 
-    var BoardService = {};
+    var boardService = {};
 
-    BoardService.all = function() {
+    boardService.all = function() {
       if (_boards.length) {
         return _boards;
       }
@@ -70728,7 +70728,7 @@ Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
       return _boards;
     };
 
-    return BoardService;
+    return boardService;
 
   }]);
 Djello.factory('listService',

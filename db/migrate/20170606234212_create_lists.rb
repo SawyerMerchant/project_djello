@@ -6,7 +6,7 @@ class CreateLists < ActiveRecord::Migration[5.0]
       t.text :description
       t.references :board, foreign_key: true
 
-      t.index [:title, :board_id], unique: true
+      # t.index [:title, :board_id], unique: true
 
 
       t.timestamps

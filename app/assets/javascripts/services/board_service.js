@@ -1,4 +1,4 @@
-Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
+Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
 
     var _boards = [];
 
@@ -14,9 +14,9 @@ Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
       return collection;
     });
 
-    var BoardService = {};
+    var boardService = {};
 
-    BoardService.all = function() {
+    boardService.all = function() {
       if (_boards.length) {
         return _boards;
       }
@@ -24,6 +24,6 @@ Djello.factory('BoardService', ['_', 'Restangular', function(_, Restangular) {
       return _boards;
     };
 
-    return BoardService;
+    return boardService;
 
   }]);

@@ -3,15 +3,21 @@ class BoardsController < ApplicationController
   before_action :set_board, except: [:index, :create]
 
   def index
+    puts "----------------------boards#index--------------------"
+
     @boards = current_user.boards
     respond_to do |format|
-      format.json { render json: resource_to_json, status: 200 }
+      format.json { render json: @boards.to_json(include: { lists: { include: :cards } } ) }
     end
   end
 
   def show
+    @board = Board.find_by(id: params[:id])
     respond_to do |format|
-      format.json { render json: resource_to_json, status: 200 }
+      puts "----------------------board.lists--------------------"
+      p format.json { render json: board.to_json(include: { lists: { include: :cards }})}
+
+      format.json { render json: board.to_json(include: { lists: { include: :cards }})}
     end
   end
 

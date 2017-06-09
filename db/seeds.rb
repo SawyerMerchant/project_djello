@@ -35,7 +35,7 @@ users = User.all
 users.each do |user|
   ITEM_COUNT.times do
     user.boards.create(
-      title: Faker::Hacker.unique.say_something_smart
+      title: Faker::Hipster.unique.words(3).join(" ")
     )
   end
 end
@@ -45,8 +45,11 @@ boards = Board.all
 boards.each do |board|
   ITEM_COUNT.times do
     board.lists.create(
-      title: Faker::Hacker.unique.say_something_smart,
+      title: Faker::Hipster.unique.words(3).join(" "),
       description: Faker::Hipster.paragraph
     )
   end
 end
+
+# puts "Creating Cards"
+# cards = Board.
