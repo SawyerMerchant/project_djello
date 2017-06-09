@@ -2,6 +2,10 @@ class ListsController < ApplicationController
 
   before_action :authenticate_user!
 
+  def index
+    puts "INDEX __________"
+  end
+
   def create
     @board = Board.find(params[:list][:board_id])
     @list = @board.lists.build(create_params)

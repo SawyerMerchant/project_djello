@@ -5,7 +5,6 @@ Djello.controller('CardsIndexCtrl', ['$scope', 'cardService', function($scope, c
   };
 
   $scope.editCard = function(card) {
-    console.log('card');
     angular.element('#card-modal-' + card.id).modal("show");
   };
 

@@ -3,9 +3,26 @@ Djello.factory('listService',
     function(Restangular, boardService) {
 
       var _boards = boardService.all();
+      var _lists = [];
+
+      var all = function() {
+        if (_lists.length) {
+          return _lists;
+        }
+        _lists = Restangular.all('lists').getList();
+        return _lists;
+      };
+
+      boardService.all = function() {
+        if (_boards.length) {
+          return _boards;
+        }
+        _boards = Restangular.all('boards').getList();
+        return _boards;
+      };
+
 
       var addList = function(board, title) {
-
         var newList = {
           list: {
             title: title,
@@ -13,7 +30,6 @@ Djello.factory('listService',
             board_id: board.id
           }
         };
-
         return Restangular.all('lists').post(newList).then(function(list) {
 
           if (board.lists) {
@@ -63,6 +79,7 @@ Djello.factory('listService',
       };
 
       return {
+        all: all,
         addList: addList,
         deleteList: deleteList,
         update: update
