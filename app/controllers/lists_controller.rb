@@ -1,9 +1,10 @@
+require 'pry'
+
 class ListsController < ApplicationController
 
   before_action :authenticate_user!
 
   def index
-    puts "INDEX __________"
   end
 
   def create

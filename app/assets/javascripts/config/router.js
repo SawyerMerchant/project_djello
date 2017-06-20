@@ -20,7 +20,7 @@ Djello.config(['$urlRouterProvider', '$stateProvider',
         resolve: {
           boards: ['boardService', function(boardService) {
             return boardService.all();
-          }]
+          }],
         }
       })
       .state('boards.index', {
@@ -41,7 +41,7 @@ Djello.config(['$urlRouterProvider', '$stateProvider',
           board: ['_', 'boards', '$stateParams', function(_, boards, $stateParams) {
             return _.find(boards, { id: +$stateParams.id });
           }],
-          
+
         }
       });
 

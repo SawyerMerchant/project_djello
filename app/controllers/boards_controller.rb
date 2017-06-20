@@ -1,28 +1,33 @@
+require 'pry'
+
 class BoardsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_board, except: [:index, :create]
+  before_action :set_board, except: [:index, :create, :show]
 
   def index
-    puts "----------------------boards#index--------------------"
-
-    @boards = current_user.boards
+    @ownedBoards = current_user.ownedboards
+    @sharedBoards = current_user.boards
+    @boards = @ownedBoards + @sharedBoards
     respond_to do |format|
-      format.json { render json: @boards.to_json(include: { lists: { include: :cards } } ) }
+      format.json { render json: @boards.to_json(include: {
+        lists: { include: :cards },
+        users: {}
+      })}
     end
   end
 
   def show
-    @board = Board.find_by(id: params[:id])
+    @users = @board.users
     respond_to do |format|
-      puts "----------------------board.lists--------------------"
-      p format.json { render json: board.to_json(include: { lists: { include: :cards }})}
-
-      format.json { render json: board.to_json(include: { lists: { include: :cards }})}
+      format.json { render json: @board.to_json(include: {
+        lists: { include: :cards },
+        users: :users
+      })}
     end
   end
 
   def create
-    @board = current_user.boards.build(board_params)
+    @board = current_user.ownedboards.build(board_params)
     respond_to do |format|
       if @board.save
         flash.now[:success] = 'Board created'
@@ -71,7 +76,7 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(:title)
+    params.require(:board).permit(:title, :id)
   end
 
   def board_errors

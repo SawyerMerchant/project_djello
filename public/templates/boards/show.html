@@ -1,6 +1,31 @@
 <div class="row">
   <div class="col-sm-9">
     <h1 id="board-title" ng-show="!editingTitle" ng-click="editTitle()">{{ board.title }}</h1>
+  </div>
+</div>
+
+<!-- begin member list -->
+<div class="col-sm-9">
+  <h5>Board's Members: </h5>
+  <span ng-repeat="user in board.users">
+    {{ user.email }} |
+  </span>
+</div>
+<!-- end member list -->
+<!-- begin member invite -->
+<div class="row">
+  <div class="col-sm-3">
+    <form ng-submit="inviteMember(invitedEmail)">
+      <!-- <pre>Model: {{invitedEmail | json}}</pre> -->
+      <input type="text" ng-model="invitedEmail" uib-typeahead="user.email for user in allUsers | filter:$viewValue | limitTo:8" class="form-control" placeholder="+ Invite Someone">
+      <!-- <input type="submit"> -->
+    </form>
+  </div>
+  <!-- end member invite -->
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
     <input ng-show="editingTitle" type="text" class="form-control" id="new-title" placeholder="Enter new title..." ng-blur="updateTitle()">
   </div>
 
@@ -47,3 +72,30 @@
   </div>
 
 </div>
+
+
+
+Test:
+
+<label>Search: <input ng-model="searchText"></label>
+<table id="searchTextResults">
+  <tr><th>Email</th></tr>
+  <tr ng-repeat="user in allUsers | filter:searchText">
+    <td>{{user.email}}</td>
+    <!-- <td>{{user.phone}}</td> -->
+  </tr>
+</table>
+
+
+<!-- <hr>
+<label>Any: <input ng-model="search.$"></label> <br>
+<label>Name only <input ng-model="search.name"></label><br>
+<label>Phone only <input ng-model="search.phone"></label><br>
+<label>Equality <input type="checkbox" ng-model="strict"></label><br>
+<table id="searchObjResults">
+  <tr><th>Name</th><th>Phone</th></tr>
+  <tr ng-repeat="friendObj in friends | filter:search:strict">
+    <td>{{friendObj.name}}</td>
+    <td>{{friendObj.phone}}</td>
+  </tr>
+</table> -->

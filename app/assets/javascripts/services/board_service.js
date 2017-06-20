@@ -1,6 +1,8 @@
 Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
 
     var _boards = [];
+    var _users = [];
+    var _sharedBoards = [];
 
     Restangular.extendCollection('boards', function(collection) {
       collection.create = function(params) {
@@ -14,6 +16,7 @@ Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
       return collection;
     });
 
+
     var boardService = {};
 
     boardService.all = function() {
@@ -23,6 +26,15 @@ Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
       _boards = Restangular.all('boards').getList();
       return _boards;
     };
+
+    // boardService.getUsers = function() {
+    //   if (_users.length) {
+    //     return _users;
+    //   }
+    //   _users = Restangular.all('lists').getList();
+    //   return _users;
+    // };
+
 
     return boardService;
 

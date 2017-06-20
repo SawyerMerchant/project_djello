@@ -19,4 +19,5 @@
 //= require angular-devise
 //= require angular-drag-and-drop-lists
 //= require bootstrap-sprockets
+//= require ui-bootstrap
 //= require_tree .

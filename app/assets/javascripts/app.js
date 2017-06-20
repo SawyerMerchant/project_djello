@@ -2,7 +2,8 @@ var Djello = angular.module('Djello', [
   'ui.router',
   'restangular',
   'Devise',
-  'dndLists'
+  'dndLists',
+  'ui.bootstrap'
 ]);
 
 Djello.constant('_', window._);

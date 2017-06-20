@@ -1,7 +1,14 @@
 
-<h1>Boards</h1>
+<h2>My Boards</h1>
 
-<h2 ng-repeat="board in boards">
+<h3 ng-repeat="board in boards">
   <a ui-sref="boards.show({ id: board.id })">{{ board.title }}</a>
   <a class="btn btn-danger" ng-click="destroy(board.id)">Delete</a>
-</h2>
+</h3>
+
+<h2>Shared with Me</h2>
+
+<h3 ng-repeat="sboard in sharedboards">
+  <a ui-sref="boards.show({ id: sboard.id })">{{ sboard.title }}</a>
+  <!-- <a class="btn btn-danger" ng-click="destroy(sboard.id)">Delete</a> -->
+</h3>

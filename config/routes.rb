@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :boards
       resources :lists
       resources :cards
+      resources :boards_users
+      resources :users, only: [:index]
     end
   end
 

@@ -34,7 +34,7 @@ puts "Creating Boards"
 users = User.all
 users.each do |user|
   ITEM_COUNT.times do
-    user.boards.create(
+    user.ownedboards.create(
       title: Faker::Hipster.unique.words(3).join(" ")
     )
   end
@@ -46,10 +46,26 @@ boards.each do |board|
   ITEM_COUNT.times do
     board.lists.create(
       title: Faker::Hipster.unique.words(3).join(" "),
-      description: Faker::Hipster.paragraph
+      description: Faker::Hipster.words(5).join(" ")
     )
   end
 end
 
-# puts "Creating Cards"
-# cards = Board.
+puts "Creating Cards"
+lists = List.all
+lists.each do |list|
+  ITEM_COUNT.times do
+    list.cards.create(
+      title: Faker::Hipster.unique.words(3).join(" "),
+      description: Faker::Hipster.words(5).join(" ")
+    )
+  end
+end
+
+puts "Adding Users to Boards"
+boards.each do |board|
+  users = User.all
+  ITEM_COUNT.times do
+    board.users << users.shuffle.pop
+  end
+end
