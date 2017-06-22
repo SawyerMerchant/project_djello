@@ -1,19 +1,15 @@
 Djello.filter('inviter', function() {
-  return function(usersToFilter, scope){
-    // passing scope into filter:
-    // *Don't modify scope
-    // *Another strategy would be easier to test
-    // https://stackoverflow.com/questions/17596246/access-scope-variables-from-a-filter-in-angularjs
+  return function(usersToFilter, boardUsers){
 
-    // console.log("usersToFilter:");
-    // console.log(usersToFilter);
-    // console.log("board.users");
-    // console.log(scope.board.users);
-
+    var boardEmails = boardUsers.map(function(user) {
+      return user.email;
+    });
 
     var returnUsers = usersToFilter.filter( function( el ) {
-      return scope.board.users.indexOf( el ) < 0;
+      return !boardEmails.includes(el.email);
     });
+    console.log("returnUsers:");
+    console.log(returnUsers);
 
     return returnUsers;
   };

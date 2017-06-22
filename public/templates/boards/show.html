@@ -17,9 +17,10 @@
   <div class="col-sm-3">
     <form ng-submit="inviteMember(invitedEmail)">
       <!-- <pre>Model: {{invitedEmail | json}}</pre> -->
-      <input type="text" ng-model="invitedEmail" uib-typeahead="user.email for user in allUsers |  filter:$viewValue | limitTo:8" class="form-control" placeholder="+ Invite Someone">
+      <input type="text" ng-model="invitedEmail" uib-typeahead="user.email for user in allUsers | inviter:board.users |  filter:$viewValue | limitTo:8" class="form-control" placeholder="+ Invite Someone">
     </form>
   </div>
+
   <!-- end member invite -->
 </div>
 
