@@ -69,3 +69,12 @@ boards.each do |board|
     board.users << users.shuffle.pop
   end
 end
+
+puts "Adding Users to Cards"
+cards = Card.all
+cards.each do |card|
+  list = card.list
+  board = list.board
+  users = board.users
+  card.users << users.shuffle.pop
+end

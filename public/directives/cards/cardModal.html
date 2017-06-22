@@ -22,8 +22,30 @@
       </div>
 
       <div class="modal-body">
-        <h4> Members </h4>
-        <a> Add Member</a>
+        <!-- begin member list -->
+        <h5> Card Agents: </h5>
+        <span ng-repeat="user in card.users">
+          {{ user.email }} |
+        </span>
+        <!-- end member list -->
+        <!-- begin member invite -->
+        <!-- <form> -->
+           <!-- ng-submit="cardInviteMember(invitedEmail)"> -->
+          <div class="btn-group" uib-dropdown keyboard-nav>
+            <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" uib-dropdown-toggle>
+              Assign Member <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+              <li role="menuitem" ng-repeat="user in board.users">
+                <a ng-click="cardAssignMember(user, card)">{{ user.email }}</a>
+              </li>
+              <!-- <li role="menuitem"><a href="#">Another action</a></li>
+              <li role="menuitem"><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li role="menuitem"><a href="#">Separated link</a></li> -->
+            </ul>
+          </div>
+          <!-- end member invite -->
       </div>
 
       <div class="modal-body">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612183554) do
+ActiveRecord::Schema.define(version: 20170622145644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20170612183554) do
   end
 
   create_table "boards_users", id: false, force: :cascade do |t|
-    t.integer "board_id", null: false
-    t.integer "user_id",  null: false
+    t.integer  "board_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["board_id"], name: "index_boards_users_on_board_id", using: :btree
     t.index ["user_id"], name: "index_boards_users_on_user_id", using: :btree
   end
@@ -39,6 +41,15 @@ ActiveRecord::Schema.define(version: 20170612183554) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["list_id"], name: "index_cards_on_list_id", using: :btree
+  end
+
+  create_table "cards_users", id: false, force: :cascade do |t|
+    t.integer  "card_id",    null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_cards_users_on_card_id", using: :btree
+    t.index ["user_id"], name: "index_cards_users_on_user_id", using: :btree
   end
 
   create_table "lists", force: :cascade do |t|

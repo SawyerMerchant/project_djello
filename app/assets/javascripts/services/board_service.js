@@ -27,13 +27,7 @@ Djello.factory('boardService', ['_', 'Restangular', function(_, Restangular) {
       return _boards;
     };
 
-    // boardService.getUsers = function() {
-    //   if (_users.length) {
-    //     return _users;
-    //   }
-    //   _users = Restangular.all('lists').getList();
-    //   return _users;
-    // };
+    
 
 
     return boardService;

@@ -10,11 +10,16 @@ class BoardsController < ApplicationController
     @boards = @ownedBoards + @sharedBoards
     respond_to do |format|
       format.json { render json: @boards.to_json(include: {
-        lists: { include: :cards },
+        lists: { include: {cards: {include: :users} } },
         users: {}
       })}
     end
   end
+
+  # format.json { render json: @boards.to_json(include: {
+  #   lists: { include: :cards },
+  #   users: {}
+  # })}
 
   def show
     @users = @board.users

@@ -1,4 +1,4 @@
-Djello.controller('CardsShowCtrl', ['$scope', 'cardService', function($scope, cardService) {
+Djello.controller('CardsShowCtrl', ['$scope', 'cardService', 'userService', function($scope, cardService, userService) {
 
   $scope.editingTitle = false;
   $scope.editingDesc = false;
@@ -48,5 +48,10 @@ Djello.controller('CardsShowCtrl', ['$scope', 'cardService', function($scope, ca
       }
     });
   };
-  
+
+  $scope.cardAssignMember = function(user, card) {
+    card.users.push(user);
+    userService.addUserToCard(user, card);
+  };
+
 }]);

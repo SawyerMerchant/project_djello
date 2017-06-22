@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # has_many :inviations
   # has_many :boards, through: :invitation
   has_and_belongs_to_many :boards
+  has_and_belongs_to_many :cards
 
   validates :email,
             presence: true

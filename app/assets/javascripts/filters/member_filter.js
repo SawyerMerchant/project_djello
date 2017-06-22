@@ -8,8 +8,8 @@ Djello.filter('inviter', function() {
     var returnUsers = usersToFilter.filter( function( el ) {
       return !boardEmails.includes(el.email);
     });
-    console.log("returnUsers:");
-    console.log(returnUsers);
+    // console.log("returnUsers:");
+    // console.log(returnUsers);
 
     return returnUsers;
   };

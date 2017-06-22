@@ -23,9 +23,16 @@ Djello.factory('userService', ['_', 'Restangular', function(_, Restangular) {
     };
 
     userService.addUserToBoard = function(user, board) {
+      // TODO move Restangular.all call out of this function
       var boardMembers = Restangular.all('boards_users');
       var newInvitation = {board_id: board.id, user_id: user.id};
       boardMembers.post(newInvitation);
+    };
+
+    userService.addUserToCard = function(userObj, cardObj) {
+      var cardMembers = Restangular.all('cards_users');
+      var newAssignment = {card_id: cardObj.id, user_id: userObj.id};
+      cardMembers.post(newAssignment);
     };
 
     userService.sendInvitation = function(email, board) {
