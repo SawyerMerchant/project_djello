@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :cards
       resources :boards_users
       resources :users, only: [:index]
+      resources :boards_users, only: [:new]
     end
   end
 

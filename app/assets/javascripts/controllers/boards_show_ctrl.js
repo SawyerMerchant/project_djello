@@ -3,6 +3,7 @@ Djello.controller('BoardsShowCtrl',
   function($scope, $state, Auth, board, userService, users) {
 
     $scope.allUsers = [];
+    // $scope.invitableMembers = inviterFilter($scope.allUsers, $scope);
 
     if (board) {
       $scope.board = board;
@@ -13,16 +14,26 @@ Djello.controller('BoardsShowCtrl',
 
     userService.all().then(function(result){
       $scope.allUsers = result;
+      // $scope.invitableMembers = $filter('invitableFilter')($scope.allUsers, $scope);
+
     });
 
-    $scope.getMembers = function(board){
-      console.log("board.id: " + board.id);
-
-    };
+    // $scope.getMembers = function(board){
+    //   console.log("board.id: " + board.id);
+    //
+    // };
 
 
     $scope.inviteMember = function(email) {
-      $scope.users = userService.findByEmail(email, $scope.allUsers);
+      var newMember = userService.existingEmail(email, $scope.allUsers);
+      if (newMember !== false) {
+        board.users.push(newMember);
+        userService.addUserToBoard(newMember, board);
+        $scope.invitedEmail = "";
+      } else {
+        userService.sendInvitation(email, board);
+        $scope.invitedEmail = "";
+      }
     };
 
 

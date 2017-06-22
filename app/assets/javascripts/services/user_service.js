@@ -11,26 +11,24 @@ Djello.factory('userService', ['_', 'Restangular', function(_, Restangular) {
       return _allUsers;
     };
 
-    // userService.getMembers = function() {
-    //   if (_users.length) {
-    //     return _users;
-    //   }
-    //   _users = Restangular
-    // };
 
-    userService.findByEmail = function(email, users) {
+    userService.existingEmail = function(email, users) {
       _user = _.find(users, function(o) {return o.email == email; });
-      // console.log("_user is: ");
-      // console.log( _user );
+
       if (typeof _user != 'undefined') {
-        console.log("add user " + _user);
         return _user;
       } else {
-        userService.sendInvitation();
+        return false;
       }
     };
 
-    userService.sendInvitation = function(email) {
+    userService.addUserToBoard = function(user, board) {
+      var boardMembers = Restangular.all('boards_users');
+      var newInvitation = {board_id: board.id, user_id: user.id};
+      boardMembers.post(newInvitation);
+    };
+
+    userService.sendInvitation = function(email, board) {
       console.log("Need an invitation for " + email);
     };
 
