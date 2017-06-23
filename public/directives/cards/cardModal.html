@@ -36,7 +36,7 @@
               Assign Member <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav">
-              <li role="menuitem" ng-repeat="user in board.users">
+              <li role="menuitem" ng-repeat="user in board.users | inviter:card.users">
                 <a ng-click="cardAssignMember(user, card)">{{ user.email }}</a>
               </li>
               <!-- <li role="menuitem"><a href="#">Another action</a></li>
